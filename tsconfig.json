@@ -1,0 +1,27 @@
+{
+	"include": ["src/scripts"],
+	"exclude": ["node_modules"],
+	"compilerOptions": {
+		"outDir": "dist",
+		"target": "es5",
+		"module": "es2015",
+		"moduleResolution": "node",
+		"lib": [
+			"ES2020",
+			"DOM"
+		],
+		"strict": true,
+		// import Vue from 'vue'の記法を許容する
+		"allowSyntheticDefaultImports": true,
+		// JSのトランスパイルを許可
+		"allowJs": true,
+		// JSの型チェック
+		"checkJs": true,
+		// ソースマップの利用
+		"sourceMap": true,
+		// ReactのJSXを解釈
+		"jsx": "react",
+		// デコレーターを利用
+		"experimentalDecorators": true,
+	},
+}
