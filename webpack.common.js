@@ -1,18 +1,17 @@
-// 共通設定(webpack.dev.js, webpack.prod.jsから読み込み)
-
 const MODE = process.env.NODE_ENV
 const isProd = MODE === 'production'
-const { resolve } = require('path')
+const templates = require('./config/webpack/utils/getTemplates')
 
+const { resolve } = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { ProvidePlugin } = require('webpack')
 
 if (isProd) {
-  console.log('production')
+  console.log('Webpack running in production mode.')
 } else {
-  console.log('development')
+  console.log('Webpack running in development mode.')
 }
 
 module.exports = ({ output, asset }) => ({
@@ -109,6 +108,7 @@ module.exports = ({ output, asset }) => ({
     new MiniCssExtractPlugin({
       filename: `assets/css/${output}.css`,
     }),
+    ...templates,
     new ProvidePlugin({
       jQuery: 'jquery',
       $: 'jquery',
