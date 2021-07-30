@@ -25,7 +25,7 @@ module.exports = ({ output, asset }) => ({
     rules: [
       // JS/JSX/TS/TSX
       {
-        test: /\.(jsx?|tsx?)$/,
+        test: /\.[jt]sx?$/,
         exclude: /node_modules/,
         use: [
           {
@@ -84,6 +84,21 @@ module.exports = ({ output, asset }) => ({
           },
         ],
       },
+      // Pug
+      {
+        test: /\.pug$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+          {
+            loader: 'pug-html-loader',
+            options: {
+              pretty: true,
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
@@ -99,7 +114,7 @@ module.exports = ({ output, asset }) => ({
       $: 'jquery',
       React: 'react',
       ReactDOM: 'react-dom',
-      Vue: 'vue',
+      Vue: ['vue/dist/vue.esm.js', 'default'],
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -128,8 +143,4 @@ module.exports = ({ output, asset }) => ({
       },
     },
   },
-  // performance: {
-  //   maxEntrypointSize: 350000,
-  //   maxAssetSize: 350000,
-  // },
 })

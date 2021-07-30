@@ -1,21 +1,17 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { merge } = require('webpack-merge');
+const { merge } = require('webpack-merge')
 
-const commonConf = require('./webpack.common');
+const commonConf = require('./webpack.common')
+const templates = require('./config/webpack/utils/getTemplates')
 const fileName = {
   output: '[name]',
   asset: '[name]',
-};
+}
 
 module.exports = () =>
-  merge(commonConf(fileName), {
+  merge(commonConf(fileName, templates), {
     mode: 'development',
     devtool: 'source-map',
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: './src/pages/index.html',
-      }),
-    ],
+    plugins: [...templates],
     devServer: {
       contentBase: 'dist',
       open: true,
@@ -25,4 +21,4 @@ module.exports = () =>
     watchOptions: {
       ignored: /node_modules/,
     },
-  });
+  })
