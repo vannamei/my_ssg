@@ -4,13 +4,13 @@
   "scripts": {
     "dev": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=development webpack",
     "watch": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=development webpack --watch",
-    "start": "webpack serve",
+    "start": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=production webpack serve",
     "build": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=production webpack",
     "lint-fix": "eslint --fix './src/**/*.{js,ts}' && prettier --write './src/**/*.{js,ts}'"
   },
   "devDependencies": {
     "@popperjs/core": "2.9.2",
-    "@types/node": "^16.4.4",
+    "@types/node": "^16.4.8",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "@types/webpack": "^5.28.0",
@@ -24,7 +24,7 @@
     "copy-webpack-plugin": "^9.0.1",
     "cross-env": "^7.0.3",
     "css-loader": "^6.2.0",
-    "eslint": "^7.31.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "glob": "^7.1.7",
     "html-loader": "^2.1.2",
@@ -36,7 +36,7 @@
     "postcss": "^8.3.6",
     "postcss-loader": "^6.1.1",
     "prettier": "^2.3.2",
-    "pug": "^3.0.1",
+    "pug": "^3.0.2",
     "pug-html-loader": "^1.1.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -47,7 +47,7 @@
     "ts-node": "^10.1.0",
     "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5",
-    "webpack": "^5.47.0",
+    "webpack": "^5.47.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.8.0"

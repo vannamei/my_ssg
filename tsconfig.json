@@ -12,7 +12,6 @@
 		],
 		"strict": true,
 		// import Vue from 'vue'の記法を許容する
-		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		// JSのトランスパイルを許可
 		"allowJs": true,

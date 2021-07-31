@@ -2,6 +2,6 @@
 	"compilerOptions": {
 		"module": "commonJS",
 		"target": "ES5",
-		"esModuleInterop": true
+		"esModuleInterop": true,
 	}
 }
