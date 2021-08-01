@@ -4,15 +4,19 @@
   "scripts": {
     "dev": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=development webpack",
     "watch": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=development webpack --watch",
-    "start": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=production webpack serve",
+    "start": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=development webpack serve",
     "build": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" NODE_ENV=production webpack",
     "lint-fix": "eslint --fix './src/**/*.{js,ts}' && prettier --write './src/**/*.{js,ts}'"
   },
   "devDependencies": {
     "@popperjs/core": "2.9.2",
-    "@types/node": "^16.4.8",
+    "@types/copy-webpack-plugin": "^8.0.1",
+    "@types/mini-css-extract-plugin": "^2.0.1",
+    "@types/node": "^16.4.9",
+    "@types/optimize-css-assets-webpack-plugin": "^5.0.4",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
+    "@types/terser-webpack-plugin": "^5.0.4",
     "@types/webpack": "^5.28.0",
     "@types/webpack-dev-server": "^3.11.5",
     "@typescript-eslint/eslint-plugin": "^4.28.5",

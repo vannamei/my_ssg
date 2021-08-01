@@ -1,11 +1,11 @@
 import glob from 'glob'
 import HTMLWebpackPlugin from 'html-webpack-plugin'
 
-export default class GetTemplates {
-  public pluginList: HTMLWebpackPlugin[]
+class GetTemplates {
+  public HTMLWebpackPluginList: HTMLWebpackPlugin[]
   constructor(private isProd: boolean) {
     const fileNames = this.getFileNames()
-    this.pluginList = fileNames.map(this.toPlugin, this)
+    this.HTMLWebpackPluginList = fileNames.map(this.toPluginList, this)
   }
   private getFileNames(): string[] {
     const fileNames = glob.sync('**/*.pug', {
@@ -14,11 +14,11 @@ export default class GetTemplates {
     if (!fileNames) {
       throw new Error('Cannot find template file.')
     } else {
-      console.log(`Found ${fileNames.length} template files.`, fileNames)
+      console.log(`\x1b[35mFound ${fileNames.length} template files.\x1b[0m`, fileNames)
       return fileNames
     }
   }
-  private toPlugin(fileName: string) {
+  private toPluginList(this: GetTemplates, fileName: string): HTMLWebpackPlugin {
     const option: HTMLWebpackPlugin.Options = {
       template: fileName,
       filename: fileName.replace('src/templates/', '').replace(/\.pug$/, '.html'),
@@ -37,3 +37,5 @@ export default class GetTemplates {
     return new HTMLWebpackPlugin(option)
   }
 }
+
+export default GetTemplates

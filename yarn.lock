@@ -168,6 +168,15 @@
   dependencies:
     "@types/node" "*"
 
+"@types/copy-webpack-plugin@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@types/copy-webpack-plugin/-/copy-webpack-plugin-8.0.1.tgz#dc0a8801eeaef3dca812df793d1afc84fb8d648f"
+  integrity sha512-TwEeGse0/wq+t3SFW0DEwroMS/cDkwVZT+vj7tMAYTp7llt/yz6NuW2n04X2M5P/kSfBQOORhrHAN2mqZdmybg==
+  dependencies:
+    "@types/node" "*"
+    tapable "^2.0.0"
+    webpack "^5.1.0"
+
 "@types/eslint-scope@^3.7.0":
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.1.tgz#8dc390a7b4f9dd9f1284629efce982e41612116e"
@@ -245,6 +254,15 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-1.3.2.tgz#93e25bf9ee75fe0fd80b594bc4feb0e862111b5a"
   integrity sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==
 
+"@types/mini-css-extract-plugin@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/mini-css-extract-plugin/-/mini-css-extract-plugin-2.0.1.tgz#948993b77f6e87da9f691c873759b187fd5cb948"
+  integrity sha512-U70+fNjmBCioVLDe4OZohLERHTTbrhvNJxLqr5qpkykyMOpvmTp0xzcdAaFQ51X/ROHDgD5BqsEeVzcYy/kFig==
+  dependencies:
+    "@types/node" "*"
+    tapable "^2.2.0"
+    webpack "^5"
+
 "@types/minimatch@*":
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.5.tgz#1001cc5e6a3704b83c236027e77f2f58ea010f40"
@@ -260,15 +278,22 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.0.tgz#2c219eaa3b8d1e4d04f4dd6e40bc68c7467d5272"
   integrity sha512-HrJuE7Mlqcjj+00JqMWpZ3tY8w7EUd+S0U3L1+PQSWiXZbOgyQDvi+ogoUxaHApPJq5diKxYBQwA3iIlNcPqOg==
 
-"@types/node@^16.4.8":
-  version "16.4.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.8.tgz#ef4974f47524448428542365db2fe7b638f928e5"
-  integrity sha512-VL7RZyCpfYEmbyd3/Eq5RNYhZt7yoL1JThZQ3KzimzhLya2Qa86U1ZZmioNWAAjiz99z1ED1xF9NUV2srvfVrA==
+"@types/node@^16.4.9":
+  version "16.4.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.9.tgz#04eb3da65d08ea377f5e682bf0d22dc1f5e7f19e"
+  integrity sha512-HXhRf581nCItzn8yevv4LYt+bJ5cBbDBAJExbDPMeU/2n5/j0ZemGpayahFBP4xL7RseaCLASLD9i9AYyDe7Nw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
   integrity sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==
+
+"@types/optimize-css-assets-webpack-plugin@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@types/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-5.0.4.tgz#eb2c8b9d3f9f14b72639ac18a1a72998a4313083"
+  integrity sha512-dpRBcoyUD1uJLzyrnEl0LCwqPc/vprmOrl6fkk0dZEZe0b28rsB6t4WsbFNitFhD4oS8lRZO1+MiKzslfCTTNQ==
+  dependencies:
+    "@types/webpack" "^4"
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -347,6 +372,14 @@
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.8.tgz#b94a4391c85666c7b73299fd3ad79d4faa435310"
   integrity sha512-ipixuVrh2OdNmauvtT51o3d8z12p6LtFW9in7U79der/kwejjdNchQC5UMn5u/KxNoM7VHHOs/l8KS8uHxhODQ==
+
+"@types/terser-webpack-plugin@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@types/terser-webpack-plugin/-/terser-webpack-plugin-5.0.4.tgz#852949e1d124e6c895cfa8cb17eb6265e4fdfe59"
+  integrity sha512-1iyfZpMNNA/h/Q8uBpwuVhxKfKQHc98PD9NaCTrg22nj6d8aUvT79KBMtRLmR43v1PtCB0r1/gWGdNXrrMEK7A==
+  dependencies:
+    terser "^5.3.8"
+    webpack "^5.1.0"
 
 "@types/uglify-js@*":
   version "3.13.1"
@@ -7529,7 +7562,7 @@ terser@^4.6.3:
     source-map "~0.6.1"
     source-map-support "~0.5.12"
 
-terser@^5.7.0:
+terser@^5.3.8, terser@^5.7.0:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/terser/-/terser-5.7.1.tgz#2dc7a61009b66bb638305cb2a824763b116bf784"
   integrity sha512-b3e+d5JbHAe/JSjwsC3Zn55wsBIM7AsHLjKxT31kGCldgbpFePaFo+PiddtO6uwRZWRw7sPXmAN8dTW61xmnSg==
@@ -8123,7 +8156,7 @@ webpack@^5:
     watchpack "^2.2.0"
     webpack-sources "^2.3.0"
 
-webpack@^5.47.1:
+webpack@^5.1.0, webpack@^5.47.1:
   version "5.47.1"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.47.1.tgz#20fb7d76f68912a2249a6dd7ff16faa178049ad2"
   integrity sha512-cW+Mzy9SCDapFV4OrkHuP6EFV2mAsiQd+gOa3PKtHNoKg6qPqQXZzBlHH+CnQG1osplBCqwsJZ8CfGO6XWah0g==

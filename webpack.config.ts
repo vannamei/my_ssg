@@ -1,31 +1,31 @@
 import path from 'path'
+import webpack from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
-import webpack from 'webpack'
 import GetTemplates from './config/webpack/utils/getTemplates'
 
 const MODE = process.env.NODE_ENV
-const isProd: boolean = MODE === 'production'
+const isProd = MODE === 'production'
 
 interface fileName {
-  output: string
-  asset: string
+  readonly output: string
+  readonly asset: string
 }
 let fileName: fileName
 let templates: GetTemplates
 
 if (isProd) {
-  console.log('Webpack running in production mode.')
+  console.log('\x1b[1;33mWebpack running in production mode.\x1b[0m')
   templates = new GetTemplates(isProd)
   fileName = {
     output: '[name].[chunkhash]',
     asset: '[contenthash]',
   }
 } else {
-  console.log('Webpack running in development mode.')
+  console.log('\x1b[1;33mWebpack running in development mode.\x1b[0m')
   templates = new GetTemplates(isProd)
   fileName = {
     output: '[name]',
@@ -107,8 +107,9 @@ const module = {
   rules: rules,
 }
 
+// @ts-ignore(MiniCssExtractPlugin -> "error TS2321: Excessive stack depth comparing types")
 const plugins = [
-  ...templates.pluginList,
+  ...templates.HTMLWebpackPluginList,
   new MiniCssExtractPlugin({
     filename: `assets/css/${fileName.output}.css`,
   }),
@@ -134,6 +135,7 @@ const plugins = [
 ]
 
 const optimization = {
+  minimize: isProd,
   minimizer: isProd ? [new TerserPlugin({}), new OptimizeCssAssetsPlugin({})] : [],
   splitChunks: {
     chunks: 'all',

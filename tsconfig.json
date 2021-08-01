@@ -1,27 +1,36 @@
 {
-	"include": ["src/scripts"],
-	"exclude": ["node_modules"],
 	"compilerOptions": {
+		// 出力先ディレクトリ
 		"outDir": "dist",
 		"target": "es5",
-		"module": "es2015",
+		"module": "ES2015",
 		"moduleResolution": "node",
-		"lib": [
-			"ES2020",
-			"DOM"
-		],
-		"strict": true,
-		// import Vue from 'vue'の記法を許容する
-		"allowSyntheticDefaultImports": true,
-		// JSのトランスパイルを許可
-		"allowJs": true,
-		// JSの型チェック
-		"checkJs": true,
-		// ソースマップの利用
-		"sourceMap": true,
-		// ReactのJSXを解釈
+		"lib": ["DOM", "ES2020"],
+		// JSXの解釈
 		"jsx": "react",
+		// ソースマップを利用
+		"sourceMap": true,
+		// 型定義ファイル'*.d.ts'を生成
+		"declaration": true,
+		"declarationMap": true,
+		// 厳格なエラーチェックを有効にする
+		"strict": true,
+		"noUnusedLocals": true,
+		"noImplicitReturns": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		// ESModulesのimport,export構文を利用
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
 		// デコレーターを利用
 		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		// JSのトランスパイル及び型チェックを利用
+		"allowJs": true,
+		"checkJs": true,
+		// ライブラリの型チェックを無視
+		"skipLibCheck": true,
 	},
+	"include": ["src/**/*", "tests/**/*", "./eslintrc.js"],
+	"exclude": ["node_modules", "dist"],
 }
