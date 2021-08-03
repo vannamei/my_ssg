@@ -1,17 +1,25 @@
+import rootDir from 'app-root-path'
 import glob from 'glob'
 import HTMLWebpackPlugin from 'html-webpack-plugin'
 
-class GetTemplates {
+interface GetTemplatesOp {
+  engine: 'pug' | 'ejs' | 'njk'
+  minify: boolean
+}
+
+export default class GetTemplates {
   public HTMLWebpackPluginList: HTMLWebpackPlugin[]
-  constructor(private isProd: boolean) {
+  constructor(private option: GetTemplatesOp) {
     const fileNames = this.getFileNames()
     this.HTMLWebpackPluginList = fileNames.map(this.toPluginList, this)
+    console.log('\x1b[1;35mGenerated HTMLWebpackPluginList.\x1b[0m')
   }
-  private getFileNames(): string[] {
-    const fileNames = glob.sync('**/*.pug', {
-      ignore: '**/_*.pug',
+  private getFileNames(this: GetTemplates): string[] {
+    const fileNames = glob.sync(`**/*.${this.option.engine}`, {
+      ignore: `**/_*.${this.option.engine}`,
+      cwd: `${rootDir}/src/templates`,
     })
-    if (!fileNames) {
+    if (!fileNames.length) {
       throw new Error('Cannot find template file.')
     } else {
       console.log(`\x1b[35mFound ${fileNames.length} template files.\x1b[0m`, fileNames)
@@ -19,12 +27,13 @@ class GetTemplates {
     }
   }
   private toPluginList(this: GetTemplates, fileName: string): HTMLWebpackPlugin {
+    const regexp = new RegExp(`\.${this.option.engine}$`)
     const option: HTMLWebpackPlugin.Options = {
-      template: fileName,
-      filename: fileName.replace('src/templates/', '').replace(/\.pug$/, '.html'),
+      template: `src/templates/${fileName}`,
+      filename: fileName.replace(regexp, '.html'),
       inject: 'body',
     }
-    if (this.isProd) {
+    if (this.option.minify) {
       option.minify = {
         collapseWhitespace: true,
         removeComments: true,
@@ -37,5 +46,3 @@ class GetTemplates {
     return new HTMLWebpackPlugin(option)
   }
 }
-
-export default GetTemplates

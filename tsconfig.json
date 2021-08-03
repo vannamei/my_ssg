@@ -1,11 +1,22 @@
 {
 	"compilerOptions": {
+		// ルートパスを指定
+		"baseUrl": "./",
 		// 出力先ディレクトリ
 		"outDir": "dist",
+		// 出力するjsのバージョンを指定
 		"target": "es5",
-		"module": "ES2015",
+		// 出力するjsのモジュールシステムを指定
+		"module": "ESnext",
+		// モジュール解決方式を指定
 		"moduleResolution": "node",
+		// 使用する組み込みライブラリを指定
 		"lib": ["DOM", "ES2020"],
+		// パスのエイリアスを解決
+		"paths": {
+			"@scss/*": ["src/scss/*"],
+			"@img/*": ["src/img/*"]
+		},
 		// JSXの解釈
 		"jsx": "react",
 		// ソースマップを利用
@@ -28,9 +39,10 @@
 		// JSのトランスパイル及び型チェックを利用
 		"allowJs": true,
 		"checkJs": true,
+		// JSONモジュールを利用
+		"resolveJsonModule": true,
 		// ライブラリの型チェックを無視
 		"skipLibCheck": true,
 	},
 	"include": ["src/**/*", "tests/**/*", "./eslintrc.js"],
-	"exclude": ["node_modules", "dist"],
 }

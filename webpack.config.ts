@@ -5,33 +5,22 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+
 import GetTemplates from './config/webpack/utils/getTemplates'
 
-const MODE = process.env.NODE_ENV
+const MODE = process.env['NODE_ENV']
 const isProd = MODE === 'production'
-
-interface fileName {
-  readonly output: string
-  readonly asset: string
+const fileName = {
+  output: isProd ? '[name].[chunkhash]' : '[name]',
+  asset: isProd ? '[contenthash]' : '[name]',
 }
-let fileName: fileName
-let templates: GetTemplates
 
-if (isProd) {
-  console.log('\x1b[1;33mWebpack running in production mode.\x1b[0m')
-  templates = new GetTemplates(isProd)
-  fileName = {
-    output: '[name].[chunkhash]',
-    asset: '[contenthash]',
-  }
-} else {
-  console.log('\x1b[1;33mWebpack running in development mode.\x1b[0m')
-  templates = new GetTemplates(isProd)
-  fileName = {
-    output: '[name]',
-    asset: '[name]',
-  }
-}
+const templates = new GetTemplates({
+  engine: 'pug',
+  minify: isProd,
+})
+
+console.log(`\x1b[1;33mWebpack running in ${MODE} mode...\x1b[0m`)
 
 const rules = [
   {
@@ -120,6 +109,7 @@ const plugins = [
     ReactDOM: 'react-dom',
     Vue: ['vue/dist/vue.esm.js', 'default'],
   }),
+  new webpack.ProgressPlugin(),
   new CopyWebpackPlugin({
     patterns: [
       {
@@ -161,6 +151,10 @@ const config = {
   },
   module: module,
   resolve: {
+    alias: {
+      '@scss': path.resolve(__dirname, 'src/scss'),
+      '@img': path.resolve(__dirname, 'src/img'),
+    },
     extensions: ['.ts', '.js', '.tsx', '.jsx', '.vue', '.json', '.scss', '.sass', '.css'],
   },
   plugins: plugins,
