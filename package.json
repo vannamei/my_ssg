@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@popperjs/core": "2.9.2",
+    "@types/app-root-path": "^1.2.4",
     "@types/copy-webpack-plugin": "^8.0.1",
     "@types/mini-css-extract-plugin": "^2.0.1",
     "@types/node": "^16.4.9",
@@ -21,6 +22,7 @@
     "@types/webpack-dev-server": "^3.11.5",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
+    "app-root-path": "^3.0.0",
     "autoprefixer": "^10.3.1",
     "bootstrap": "^5.0.2",
     "bulma": "^0.9.3",

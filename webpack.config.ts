@@ -16,9 +16,11 @@ const fileName = {
 }
 
 const templates = new GetTemplates({
-  engine: 'pug',
+  engine: 'none',
   minify: isProd,
 })
+
+console.log(templates)
 
 console.log(`\x1b[1;33mWebpack running in ${MODE} mode...\x1b[0m`)
 
