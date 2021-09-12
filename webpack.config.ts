@@ -1,28 +1,26 @@
-import path from 'path'
-import webpack from 'webpack'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
-import { CleanWebpackPlugin } from 'clean-webpack-plugin'
-import TerserPlugin from 'terser-webpack-plugin'
-import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+import path from "path";
+import webpack from "webpack";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
+import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
 
-import GetTemplates from './config/webpack/utils/getTemplates'
+import GetTemplates from "./config/webpack/utils/getTemplates";
 
-const MODE = process.env['NODE_ENV']
-const isProd = MODE === 'production'
+const MODE = process.env["NODE_ENV"];
+const isProd = MODE === "production";
 const fileName = {
-  output: isProd ? '[name].[chunkhash]' : '[name]',
-  asset: isProd ? '[contenthash]' : '[name]',
-}
+  output: isProd ? "[name].[chunkhash]" : "[name]",
+  asset: isProd ? "[contenthash]" : "[name]",
+};
 
-const templates = new GetTemplates({
-  engine: 'none',
+const { HTMLWebpackPluginList } = new GetTemplates({
+  engine: "pug",
   minify: isProd,
-})
+});
 
-console.log(templates)
-
-console.log(`\x1b[1;33mWebpack running in ${MODE} mode...\x1b[0m`)
+console.log(`\x1b[1;33mWebpack running in ${MODE} mode...\x1b[0m`);
 
 const rules = [
   {
@@ -30,7 +28,7 @@ const rules = [
     exclude: /node_modules/,
     use: [
       {
-        loader: 'ts-loader',
+        loader: "ts-loader",
       },
     ],
   },
@@ -41,34 +39,34 @@ const rules = [
         loader: MiniCssExtractPlugin.loader,
       },
       {
-        loader: 'css-loader',
+        loader: "css-loader",
         options: {
           url: false,
           importLoaders: 2,
         },
       },
       {
-        loader: 'postcss-loader',
+        loader: "postcss-loader",
         options: {
           postcssOptions: {
-            plugins: [['autoprefixer', { grid: true }]],
+            plugins: [["autoprefixer", { grid: true }]],
           },
         },
       },
       {
-        loader: 'sass-loader',
+        loader: "sass-loader",
       },
     ],
   },
   {
     test: /\.(ico|svg|jpe?g|png|webp)$/,
-    type: 'asset/resource',
+    type: "asset/resource",
     generator: {
       filename: `assets/img/${fileName.asset}[ext]`,
     },
     use: [
       {
-        loader: 'image-webpack-loader',
+        loader: "image-webpack-loader",
         options: {
           mozjpeg: {
             progressive: true,
@@ -82,94 +80,107 @@ const rules = [
     test: /\.pug$/,
     use: [
       {
-        loader: 'html-loader',
+        loader: "html-loader",
       },
       {
-        loader: 'pug-html-loader',
+        loader: "pug-html-loader",
         options: {
           pretty: true,
         },
       },
     ],
   },
-]
+];
 
 const module = {
   rules: rules,
-}
+};
 
-// @ts-ignore(MiniCssExtractPlugin -> "error TS2321: Excessive stack depth comparing types")
+// @ts-ignore
 const plugins = [
-  ...templates.HTMLWebpackPluginList,
+  ...HTMLWebpackPluginList,
   new MiniCssExtractPlugin({
     filename: `assets/css/${fileName.output}.css`,
   }),
   new webpack.ProvidePlugin({
-    jQuery: 'jquery',
-    $: 'jquery',
-    React: 'react',
-    ReactDOM: 'react-dom',
-    Vue: ['vue/dist/vue.esm.js', 'default'],
+    jQuery: "jquery",
+    $: "jquery",
+    React: "react",
+    ReactDOM: "react-dom",
+    Vue: ["vue/dist/vue.esm.js", "default"],
   }),
   new webpack.ProgressPlugin(),
   new CopyWebpackPlugin({
     patterns: [
       {
-        context: 'src/static',
-        from: '**',
-        to: path.resolve(__dirname, 'dist'),
+        context: "src/static",
+        from: "**",
+        to: path.resolve(__dirname, "dist"),
       },
     ],
   }),
   new CleanWebpackPlugin({
     cleanStaleWebpackAssets: false,
   }),
-]
+];
 
 const optimization = {
   minimize: isProd,
-  minimizer: isProd ? [new TerserPlugin({}), new OptimizeCssAssetsPlugin({})] : [],
+  minimizer: isProd
+    ? [new TerserPlugin({}), new OptimizeCssAssetsPlugin({})]
+    : [],
   splitChunks: {
-    chunks: 'all',
+    chunks: "all",
     minSize: 0,
     cacheGroups: {
       vendors: {
-        name: 'vendors',
+        name: "vendors",
         test: /[\\/]node_modules[\\/]/,
         priority: -10,
       },
       default: false,
     },
   },
-}
+};
 
 const config = {
   mode: MODE,
-  devtool: isProd ? undefined : 'source-map',
-  entry: './src/scripts/main.ts',
+  devtool: isProd ? undefined : "source-map",
+  entry: "./src/scripts/main.ts",
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, "dist"),
     filename: `assets/js/${fileName.output}.js`,
   },
   module: module,
   resolve: {
     alias: {
-      '@scss': path.resolve(__dirname, 'src/scss'),
-      '@img': path.resolve(__dirname, 'src/img'),
+      "@scss": path.resolve(__dirname, "src/scss"),
+      "@img": path.resolve(__dirname, "src/img"),
+      "@scripts": path.resolve(__dirname, "src/scripts"),
     },
-    extensions: ['.ts', '.js', '.tsx', '.jsx', '.vue', '.json', '.scss', '.sass', '.css'],
+    extensions: [
+      ".ts",
+      ".js",
+      ".tsx",
+      ".jsx",
+      ".vue",
+      ".json",
+      ".scss",
+      ".sass",
+      ".css",
+    ],
   },
   plugins: plugins,
   optimization: optimization,
-  target: isProd ? ['web', 'es5'] : 'web',
+  target: isProd ? ["web", "es5"] : "web",
   devServer: {
-    contentBase: 'dist',
+    contentBase: "dist",
     open: true,
     watchContentBase: true,
   },
   watchOptions: {
     ignored: /node_modules/,
   },
-}
+};
 
-export default config
+export default config;

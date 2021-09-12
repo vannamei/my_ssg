@@ -1,9 +1,10 @@
 {
-  "printWidth": 120,
+  "printWidth": 100,
   "tabWidth": 2,
+  "semi": true,
   "singleQuote": true,
   "trailingComma": "es5",
-  "semi": false,
-  "parser": "typescript",
+  "arrowParens": "always",
+  "useTabs": false,
   "endOfLine": "lf"
 }

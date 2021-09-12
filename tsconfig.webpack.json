@@ -1,6 +1,7 @@
 {
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"module": "commonJS",
-	}
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonJS"
+  },
+  "exclude": ["tests/**/*", "**/?(*.)+(spec|test).[tj]s?(x)"]
 }
